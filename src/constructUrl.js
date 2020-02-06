@@ -138,6 +138,12 @@ function constructUrl(src, longOptions) {
     url += key + "=" + encodeURIComponent(val) + "&";
   }
 
+  if ( config.queryDelim ) {
+    url = url.indexOf( config.queryDelim ) > -1
+      ? url.replace( "?", "&" )
+      : url.replace( "?", config.queryDelim );
+  }
+
   if ( config.debugUrl ) {
     console.log( `[ react-imgix ] :: ${url.slice(0, -1)}` );
   }

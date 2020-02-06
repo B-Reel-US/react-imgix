@@ -3,7 +3,8 @@ const config = {
     fallbackImage: true,
     sizesAttribute: true,
     invalidARFormat: true
-  }
+  },
+  queryDelim: null,
   debugUrl: false,
 };
 
@@ -13,6 +14,10 @@ const _setWarning = (name, value) => {
   }
   config.warnings[name] = value;
 };
+
+const _setQueryDelim = (delim) => {
+  config.queryDelim = delim;
+}
 
 const _setDebugUrl = (delim) => {
   config.debugUrl = delim;
@@ -24,6 +29,9 @@ class PublicConfigAPI {
   }
   static enableWarning(name) {
     _setWarning(name, true);
+  }
+  static setQueryDelim(delim) {
+    _setQueryDelim(delim);
   }
   static setDebugUrl(delim) {
     _setDebugUrl(delim);
