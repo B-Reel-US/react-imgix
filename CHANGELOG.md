@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [9.1.0](https://github.com/imgix/react-imgix/compare/v9.0.1...v9.1.0) (2020-02-06)
+
+
+### Features
+
+* **config:** Add the query delim variable ([de735d5](https://github.com/imgix/react-imgix/commit/de735d50dfecc4bd740d86f4503689183e5cc45d))
+* **debug:** Added a debug URL config var ([cac2a2b](https://github.com/imgix/react-imgix/commit/cac2a2b096ea73b56658eee3ed6a724387fcfd3a))
+
 ### [9.0.1](https://github.com/imgix/react-imgix/compare/v9.0.0...v9.0.1) (2019-11-22)
 
 
