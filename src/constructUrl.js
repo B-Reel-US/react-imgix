@@ -8,6 +8,7 @@ Minor syntax modifications have been made
 var Base64 = require("js-base64").Base64;
 const PACKAGE_VERSION = require("../package.json").version;
 import extractQueryParams from "./extractQueryParams";
+import { config } from "./common";
 
 // @see https://www.imgix.com/docs/reference
 var PARAM_EXPANSION = Object.freeze({
@@ -135,6 +136,10 @@ function constructUrl(src, longOptions) {
     }
 
     url += key + "=" + encodeURIComponent(val) + "&";
+  }
+
+  if ( config.debugUrl ) {
+    console.log( `[ react-imgix ] :: ${url.slice(0, -1)}` );
   }
 
   return url.slice(0, -1);

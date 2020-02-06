@@ -171,6 +171,20 @@ function buildSrc({
     }
   }
 
+  if ( config.debugUrl ) {
+    const urls = srcSet.split( ', ' );
+    urls.map(
+      url => {
+        const cleanUrl = url.split( ' ' )[0];
+
+        if ( cleanUrl.match( /&$/ ) )
+          return console.log( `[ react-imgix ] :: ${cleanUrl.slice(0, -1)}` );
+        else
+          return console.log( `[ react-imgix ] :: ${cleanUrl}` )
+      }
+    );
+  }
+
   return {
     src,
     srcSet
