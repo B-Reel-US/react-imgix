@@ -1,5 +1,10 @@
+import { config } from "./common";
+
 export default function extractQueryParams(src) {
-  const splitSrc = src.split("?");
+  const splitSrc = config.queryDelim
+    ? src.split( config.queryDelim )
+    : src.split("?");
+
   const url = splitSrc[0];
   const query = splitSrc[1];
   if (!query) {
