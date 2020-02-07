@@ -6,6 +6,7 @@ const config = {
   },
   queryDelim: null,
   debugUrl: false,
+  mockFormat: false,
 };
 
 const _setWarning = (name, value) => {
@@ -23,6 +24,10 @@ const _setDebugUrl = (delim) => {
   config.debugUrl = delim;
 }
 
+const _setMockFormat = (active) => {
+  config.mockFormat = active;
+}
+
 class PublicConfigAPI {
   static disableWarning(name) {
     _setWarning(name, false);
@@ -35,6 +40,9 @@ class PublicConfigAPI {
   }
   static setDebugUrl(delim) {
     _setDebugUrl(delim);
+  }
+  static setMockFormat(active) {
+    _setMockFormat(active);
   }
 }
 

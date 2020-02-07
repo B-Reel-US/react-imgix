@@ -113,7 +113,7 @@ var DEFAULT_OPTIONS = Object.freeze({
  * @param  {Object} longOptions map of image API options, in long or short form per expansion rules
  * @return {String}             URL of image src transformed by Imgix
  */
-function constructUrl(src, longOptions) {
+function constructUrl(src, longOptions, ext) {
   if (!src) {
     return "";
   }
@@ -145,16 +145,16 @@ function constructUrl(src, longOptions) {
   }
 
   if ( config.debugUrl ) {
-    console.log( `[ react-imgix ] :: ${url.slice(0, -1)}` );
+    console.log( `[ react-imgix ] :: ${url.slice(0, -1)}${ext || ''}` );
   }
 
-  return url.slice(0, -1);
+  return `${url.slice(0, -1)}${ext || ''}`;
 }
 
 function buildURLPublic(src, imgixParams = {}, options = {}) {
   const { disableLibraryParam } = options;
 
-  const [rawSrc, params] = extractQueryParams(src);
+  const [rawSrc, params, ext] = extractQueryParams(src);
 
   return constructUrl(
     rawSrc,
@@ -163,7 +163,8 @@ function buildURLPublic(src, imgixParams = {}, options = {}) {
       params,
       imgixParams,
       disableLibraryParam ? {} : { ixlib: `react-${PACKAGE_VERSION}` }
-    )
+    ),
+    ext
   );
 }
 

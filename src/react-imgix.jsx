@@ -73,20 +73,20 @@ const setParentRef = (parentRef, el) =>{
   }
 }
 
-const buildSrcSetPairWithFixedHeight = (url, targetWidth, fixedHeight, _) =>
-  url + "&h=" + fixedHeight + "&w=" + targetWidth + " " + targetWidth + "w";
+const buildSrcSetPairWithFixedHeight = (url, ext, targetWidth, fixedHeight, _ ) =>
+  url + "&h=" + fixedHeight + "&w=" + targetWidth + ext + " " + targetWidth + "w";
 
-const buildSrcSetPairWithTargetWidth = (url, targetWidth, _1, _2) =>
-  url + "&w=" + targetWidth + " " + targetWidth + "w";
+const buildSrcSetPairWithTargetWidth = (url, ext, targetWidth,  _1, _2) =>
+  url + "&w=" + targetWidth + ext + " " + targetWidth + "w";
 
-const buildDprSrcWithQuality = (url, quality, dpr) =>
-  url + "&q=" + quality + "&dpr=" + dpr + " " + dpr + "x";
+const buildDprSrcWithQuality = (url, ext, quality, dpr) =>
+  url + "&q=" + quality + "&dpr=" + dpr + ext +" " + dpr + "x";
 
-const buildDprSrcWithoutQuality = (url, _, dpr) =>
-  url + "&dpr=" + dpr + " " + dpr + "x";
+const buildDprSrcWithoutQuality = (url, ext, _, dpr ) =>
+  url + "&dpr=" + dpr + ext +" " + dpr + "x";
 
-const buildDprSrcWithQualityByDpr = (url, quality, dpr) =>
-  url + "&q=" + quality + "&dpr=" + dpr + " " + dpr + "x";
+const buildDprSrcWithQualityByDpr = (url, ext, quality, dpr) =>
+  url + "&q=" + quality + "&dpr=" + dpr + ext +" " + dpr + "x";
 
 /**
  * Build a imgix source url with parameters from a raw url
@@ -102,7 +102,7 @@ function buildSrc({
 }) {
   const fixedSize = width != null || height != null;
 
-  const [rawSrc, params] = extractQueryParams(inputSrc);
+  const [rawSrc, params, ext] = extractQueryParams(inputSrc);
 
   const srcOptions = Object.assign(
     {},
@@ -135,7 +135,7 @@ function buildSrc({
       const len = DPR_QUALITY_VALUES.length;
       for (let i = 0; i < len; i++) {
         const quality = DPR_QUALITY_VALUES[i];
-        srcSet += srcFn(constructedUrl, q || quality, i + 1) + ", ";
+        srcSet += srcFn(constructedUrl, ext, q || quality, i + 1 ) + ", ";
       }
       srcSet = srcSet.slice(0, -2);
     } else {
@@ -155,7 +155,7 @@ function buildSrc({
       const len = targetWidths.length;
       for (let i = 0; i < len; i++) {
         const targetWidth = targetWidths[i];
-        srcSet += srcFn(constructedUrl, targetWidth, height) + ", ";
+        srcSet += srcFn(constructedUrl, ext, targetWidth, height) + ", ";
       }
       srcSet = srcSet.slice(0, -2);
 
