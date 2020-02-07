@@ -9,7 +9,6 @@ export default function extractQueryParams(src) {
 
   if ( config.mockFormat && splitSrc[1] ) {
     ext = splitSrc[1].match( /\.[\d\w]+$/ )[0];
-    console.log("extension", ext);
     splitSrc[1] = splitSrc[1].replace( ext, '' );
   }
 
